@@ -1,0 +1,390 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400&family=Noto+Sans+JP:wght@900&display=swap');
+@import url('animation.css');
+@import url('canvas.css');
+@import url('accessibility.css');
+
+:root {
+  --main-bg-color: #FFF;
+  --main-text-color: #000000;
+  --accent-color: #c0519f;
+  --accent-color-2: #feba01;
+  --accent-color-3: #4d969f;
+  --main-type: 400 1rem "Lato", sans-serif;
+  --accent-type: 900 2rem 'Noto Sans JP', sans-serif;
+  --scale-type: calc(100vmin - var(--header-size));
+  --scale-header: clamp(1rem, 5vw, 2rem);
+  --justify-small: 3vmin;
+  --justify-medium: 6vmin;
+  --header-size: 6rem;
+  --scene-size: 12vmin;
+  --scene-zoom-size: 14vmin;
+
+  counter-reset: nav-header;
+}
+
+[data-lazy] {
+  visibility: collapse;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s;
+}
+
+[data-lazy="true"] {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: all;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font: var(--main-type);
+  color: var(--main-text-color);
+}
+
+.stem {
+  position: relative;
+  min-height: max(100vh, 300px);
+  background: white;
+}
+
+.stem::before {
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  inset: 0 0;
+  z-index: 999;
+  mix-blend-mode: color;
+  pointer-events: none;
+  transition: background-color linear .5s;
+}
+
+.stem::after {
+  content: "";
+  position: fixed;
+  inset: 0 0;
+  z-index: 200;
+  background-image: url('./assets/colorspace_grain4.webp');
+  pointer-events: none;
+}
+
+@keyframes swatch {
+  from {
+    background-image: linear-gradient(to bottom right, #172327 0%, #172327 8%, #17382d 8%, #17382d 16%, #327345 16%, #327345 24%, #869955 24%, #869955 32%, #af8e40 32%, #af8e40 37%, #b46839 37%, #b46839 42%, #a53942 42%, #a53942 47%, #bc426c 47%, #bc426c 51%, #8c315d 51%, #8c315d 55%, #6d416d 55%, #6d416d 60%, #413464 60%, #413464 66%, #5790a5 66%, #5790a5 71%, #2f849d 71%, #2f849d 80%, #296686 80%, #296686 93%, #23436e 93%, #23446f 100%);
+    background-size: 20px 20px;
+    background-position: center left;
+  }
+
+  to {
+    background-image: repeating-conic-gradient(rgb(255, 255, 255, 1) 0% 100%, transparent 0% 100%);
+    background-size: 100px 100px;
+    background-position: center right;
+  }
+
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Layout */
+
+/* Headers */
+.header {
+  position: relative;
+  z-index: 100;
+  display: grid;
+  grid-template: 1fr / max-content 1fr min-content;
+  align-items: center;
+  gap: 10px;
+  box-sizing: border-box;
+  padding: 0 var(--justify-medium);
+  width: 100%;
+  height: 6rem;
+  mix-blend-mode: exclusion;
+}
+
+.header__button {
+  position: relative;
+  display: flex;
+  place-content: center center;
+  align-items: center;
+  justify-self: flex-end;
+  width: 3rem;
+  height: 3rem;
+  font-size: 0;
+  color: var(--accent-color);
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Logo */
+.header__button.--logo {
+  width: fit-content;
+  height: auto;
+  font: var(--accent-type);
+  font-size: clamp(.5rem, 6vw, 2rem);
+  text-transform: uppercase;
+}
+
+.header__button.--logo:is(:hover, :focus-visible) {
+  font-size: 0;
+}
+
+.header__button.--logo:is(:hover, :focus-visible)::before {
+  display: block;
+  content: attr(data-jp);
+  font-size: clamp(.7rem, 6vw, 2rem);
+  animation: bounce .25s 1;
+}
+
+/* Motion toggler */
+.header__button.--anima::before {
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--accent-color);
+  transition: all .25s;
+}
+
+.header__button.--anima:is(:hover, :focus-visible)::before {
+  transform: scale(1.2);
+}
+
+[data-motion-toggled="false"].header__button.--anima::before {
+  clip-path: polygon(0 0, 0 100%, 100% 50%, 100% 50%, 0 0, 0 100%, 100% 50%, 100% 50%);
+}
+
+[data-motion-toggled="true"].header__button.--anima::before {
+  clip-path: polygon(20% 0, 20% 100%, 40% 100%, 40% 0, 60% 0, 60% 100%, 80% 100%, 80% 0);
+}
+
+/* Nav toggler */
+.header__button.--nav {
+  flex-flow: column wrap;
+  align-items: flex-end;
+  gap: 3px;
+}
+
+.header__button.--nav::before,
+.header__button.--nav::after {
+  content: "";
+  width: 100%;
+  border-bottom: 3px solid var(--accent-color);
+  transition: all .25s;
+}
+
+.header__button.--nav::after {
+  width: 60%;
+}
+
+.header__button.--nav:is(:hover, :focus-visible)::after,
+[data-nav-toggled="true"].header__button.--nav::after {
+  width: 100%;
+}
+
+[data-nav-toggled="true"].header__button.--nav::before {
+  transform: rotate(45deg);
+}
+
+[data-nav-toggled="true"].header__button.--nav::after {
+  transform: rotate(-45deg);
+}
+
+/* Nav */
+.nav {
+  position: absolute;
+  inset: 0 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  padding: 6rem 0 0 0;
+  background: rgb(248, 176, 19);
+}
+
+.nav__figure {
+  position: absolute;
+  inset: 0 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.nav__figure::after {
+  content: "";
+  position: absolute;
+  bottom: 0%;
+  width: 100%;
+  height: 10%;
+  background: repeat-x center top / 50vmin 100% url('./assets/waves.svg');
+  animation: wave 30s linear infinite forwards, swell 6s linear infinite forwards;
+  mix-blend-mode: exclusion;
+}
+
+.nav__list {
+  width: 100%;
+  padding: 0 var(--justify-medium);
+}
+
+.nav__button {
+  counter-increment: nav-header;
+  display: block;
+  font: var(--accent-type);
+  font-size: 0px;
+  color: var(--accent-color);
+}
+
+.nav__button:is(:hover, :focus) {
+  color: var(--main-text-color);
+  background-color: var(--accent-color);
+  mix-blend-mode: exclusion;
+  animation: bounce .25s 1;
+}
+
+.nav__button::before,
+.nav__button::after {
+  font-size: max(calc(var(--scale-type) * .145), 1.5rem);
+  text-shadow: calc(1em / 15) 0px green, calc(1em / 30) 0px green, calc(1em / 60) 0px green, calc(1em / 70) 0vmin green;
+}
+
+.nav__button:after {
+  content: attr(data-en);
+}
+
+.nav__button:is(:hover, :focus)::after {
+  content: attr(data-jp);
+  font-size: max(calc(var(--scale-type) * .145), 1.5rem);
+}
+
+.nav__button::before {
+  content: "#0" counter(nav-header);
+  font: var(--main-type);
+  font-size: max(calc(var(--scale-type) * .035), .5rem);
+  text-shadow: none;
+}
+
+/* Main */
+.main {
+  position: relative;
+}
+
+.page {
+  position: relative;
+  min-height: 12rem;
+}
+
+.page.--home {
+  box-sizing: border-box;
+  margin: 0 var(--justify-small) var(--justify-small) var(--justify-small);
+  height: calc(100vh - var(--header-size) - var(--justify-small));
+  background: #feba01;
+  background: linear-gradient(180deg, rgba(254, 187, 2, 1) 0%, rgba(248, 248, 19, 1) 100%);
+  animation: fader .25s reverse forwards;
+}
+
+.page.--projects {
+  margin: 0 var(--justify-small);
+  height: calc(100vh - 6rem);
+}
+
+h1 {
+  font: var(--accent-type);
+  font-size: calc(var(--scale-header) * 2);
+  line-height: calc(var(--scale-header) * 2);
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--accent-color-2);
+}
+
+h2 {
+  font: var(--accent-type);
+  font-size: var(--scale-header);
+  line-height: var(--scale-header);
+  color: var(--accent-color);
+  text-transform: uppercase;
+  text-shadow: calc(1em / 15) 0px green, calc(1em / 30) 0px green, calc(1em / 60) 0px green, calc(1em / 70) 0vmin green;
+
+}
+
+h3 {
+  font: var(--accent-type);
+  font-size: calc(var(--scale-header) * .5);
+  line-height: calc(var(--scale-header) * .5);
+  color: var(--accent-color-3);
+  text-transform: uppercase;
+  text-shadow: calc(1em / 15) 0px var(--accent-color-2);
+
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 6vw;
+
+}
+
+.entry>a,
+.entry>* a {
+  color: var(--accent-color);
+}
+.entry>a:hover,
+.entry>* a:hover {
+  color: var(--accent-color-3);
+}
+
+.entry {
+  flex: 1 300px;
+  display: grid;
+  grid-template: min-content min-content min-content / 1fr 1.5fr;
+  gap: 15px;
+  padding: 15px;
+  transition: .25s all;
+}
+
+.entry:hover{
+  background-color: var(--accent-color-2);
+}
+
+.entry>p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.entry>figure{
+  grid-row: span 3;
+  min-height: 50px;
+  background-position: center center;
+  background-size:cover;
+}
+
+.entry>figure.--celadon{
+  background-image:url(assets/project_1_1.webp);
+}
+
+.entry>figure.--fuujin{
+  background-image:url(assets/lake_matsubara_on_a_morning_by_kawase_hasui_load.webp);
+}
+
+.entry>figure.--loomy{
+  background-image:url(assets/colorspace.webp);
+}
+
+@media only screen and (max-width: 600px) {
+  .entry {
+    grid-template: 1fr min-content min-content min-content / 1fr;
+  }
+}

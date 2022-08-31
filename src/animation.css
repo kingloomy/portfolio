@@ -1,0 +1,143 @@
+/* 2d Animation */
+@keyframes translateForward{
+  0%{content:"zach young"}
+  20%{content:"youngu zach"}
+  40%{content:"yangu zakku"}
+  60%{content:"ヤnグzakku"}
+  80%{content:"ヤング zaック"}
+  100%{content:"ヤングザック"}
+}
+@keyframes translateBackward{
+  0%{content:"ヤングザック"}
+  20%{content:"ヤング zaック"}
+  40%{content:"ヤnグzakku"}
+  60%{content:"yangu zakku"}
+  80%{content:"youngu zach"}
+  100%{content:"zach young"}
+}
+@keyframes fader {
+  from{
+      opacity:1;
+  }
+  to{
+      opacity:0;
+  }
+}
+@keyframes marquee {
+  0%{transform: translateX(0%);}
+  100%{transform: translateX(-50%);}
+}
+
+/* Nav */
+@keyframes wave {
+  from{
+    background-position-x: 0;
+  }
+  to{
+    background-position-x: 100vw;
+  }
+}
+@keyframes swell {
+  0%{background-position-y: 0;}
+  50%{background-position-y: 1vmin;}
+  100%{background-position-y: 0;}
+}
+
+@keyframes floater{
+  0%{top:0; transform:skew(5deg, 5deg)}
+  30%{top:20%;transform:skew(-5deg, -5deg) }
+  50%{top:5%; transform:skew(5deg, 5deg)}
+  70%{top:30%; transform:skew(-5deg, -5deg)}
+  100%{top:0%; transform:skew(5deg, 5deg)}
+}
+@keyframes floater2{
+  0%{top:40%; transform:skew(5deg, 5deg)}
+  30%{top:60%;transform:skew(-5deg, -5deg) }
+  50%{top:25%; transform:skew(5deg, 5deg)}
+  70%{top:80%; transform:skew(-5deg, -5deg)}
+  100%{top:40%; transform:skew(5deg, 5deg)}
+}
+@keyframes floater3{
+  0%{top:85%; transform:skew(5deg, 5deg)}
+  30%{top:80%;transform:skew(-5deg, -5deg) }
+  50%{top:75%; transform:skew(5deg, 5deg)}
+  70%{top:80%; transform:skew(-5deg, -5deg)}
+  100%{top:85%; transform:skew(5deg, 5deg)}
+}
+@keyframes floater4{
+  0%{top:85%; transform:skew(5deg, 5deg)}
+  30%{top:80%;transform:skew(-5deg, -5deg) }
+  50%{top:75%; transform:skew(5deg, 5deg)}
+  70%{top:80%; transform:skew(-5deg, -5deg)}
+  100%{top:85%; transform:skew(5deg, 5deg)}
+}
+@keyframes bounce{
+  0%{transform: translateY(0);}
+  50%{transform: translateY(-3%);}
+  100%{transform: translateY(0);}
+}
+
+/* 3d Animation */
+/* Cuboids */
+@keyframes rotateGeo {
+  from{
+      transform:rotateZ(0) translate3d(0,0,-15em);
+  }
+  to{
+      transform:rotateZ(360deg) translate3d(0,0,-15em);
+  }
+}
+@keyframes rotateGeo2 {
+  from{
+      transform:rotate3d(2, 2, 1, 0deg);
+  }
+  to{
+      transform:rotate3d(1, 2, 1, 360deg);
+  }
+}
+@keyframes rotateGeo3 {
+  from{
+      transform:scale(.5) rotateZ(0deg) translate3d(0,0,-10em);
+  }
+  to{
+      transform:scale(.5) rotateZ(360deg) translate3d(0,0,-10em);
+  }
+}
+
+/* Sphere */
+@keyframes ambientFloat{
+  from{transform: translate3d(1.5em, 0, -3em)}
+  to{transform:translate3d(1.5em, 10vh, -3em)}
+}
+@keyframes reflectedLight{
+  0%{opacity:0}
+  50%{opacity:.5}
+  100%{opacity:0}
+}
+@keyframes castShadow{
+  from{opacity:.1; filter:blur(5px); }
+  to{opacity:.4; filter:blur(4px);}
+}
+@keyframes orbit {
+  0%{transform: rotateY(0) translateZ(1em);}
+  100%{transform: rotateY(360deg)  translateZ(1em);}
+}
+
+/* Torus */
+@keyframes ambientFloat--torus{
+  0%{transform:  translate3d(3em, 0, -2em)}
+  25%{transform: translate3d(3em, 1em, -2em)}
+  100%{transform:  translate3d(3em, 0, -2em)}
+}
+@keyframes castShadow--torus{
+  0%{opacity:.1; filter:blur(5px);}
+  50%{opacity:.4; filter:blur(4px);}
+  100%{opacity:.1; filter:blur(5px);}
+}
+
+/* Pyramid */
+@keyframes catchLight {
+  0%{background-color: rgb(255, 60, 0);}
+  50%{background-color: rgba(240, 184, 0, 0.486);}
+  100%{background-color: rgb(255, 60, 0);}
+}

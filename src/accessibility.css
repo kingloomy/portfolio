@@ -1,0 +1,41 @@
+/*Semantics*/
+figcaption{
+    position:absolute;
+    width:0%;
+    height:0%;
+    font-size:0;
+    pointer-events: none;
+    user-select: none;
+  }
+/*Restyling inputs*/
+:focus-visible, :is(#menu-sentinel, #play-pause):focus-visible + label{
+    outline:3px solid var(--accent-color);
+    outline-offset: 3px;
+}
+#menu-sentinel, #play-pause{
+    position:absolute;
+    appearance: none;
+    outline: none;
+}
+/*Animation Controls*/
+[data-motion="false"]::before,
+[data-motion="false"]::after,
+[data-motion="false"] *, 
+[data-motion="false"] *::before, 
+[data-motion="false"] *::after{
+    animation-play-state: paused !important;
+    transition: none;
+    pointer-events: none;
+}
+@media (prefers-reduced-motion) {
+    [data-motion],
+    [data-motion]::before,
+    [data-motion]::after,
+    [data-motion] *,
+    [data-motion] *::before, 
+    [data-motion] *::after{
+        animation-play-state: paused !important;
+        transition: none;
+        pointer-events: none;
+    }
+}
