@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Routes, Route, Link } from "react-router-dom";
+import LazyLoad from 'react-lazyload';
 import './stylesheet.css';
 
 function App() {
@@ -198,6 +199,69 @@ function App() {
     </section>
   );
 
+  const PortfolioPage = (
+    <section className='page --portfolio'>
+      <h2 className='big-header' id="concept">Concept</h2>
+      <LazyLoad>
+        <a target="_blank" href="/assets/port/e3987r3.jpg"><img className="--big" src="/assets/port/e3987r3.jpg" alt="Fantasy Landscape" /></a>
+      </LazyLoad>
+      <LazyLoad>
+        <a target="_blank" href="/assets/port/uyuku774.jpg"><img className="--big" src="/assets/port/uyuku774.jpg" alt="Scenic Landscape" /></a>
+      </LazyLoad>
+      <LazyLoad>
+        <a target="_blank" href="/assets/port/fr784.jpg"><img className="--big" src="/assets/port/fr784.jpg" alt="Ukiyo-e Narrative" /></a>
+      </LazyLoad>
+      <LazyLoad>
+        <a target="_blank" href="/assets/port/69173e68-034f-4dfa-9ef3-3d45f62348de_rw_1920.jpg"><img className='--big' src="/assets/port/69173e68-034f-4dfa-9ef3-3d45f62348de_rw_1920.jpg" alt="Robot Character" /></a>
+      </LazyLoad>
+      <LazyLoad>
+        <div>
+          <a target="_blank" href="/assets/port/aaa4b2da-163a-42e9-845c-6aa07c2487d5_rw_1920.jpg"><img className='--half' src="/assets/port/aaa4b2da-163a-42e9-845c-6aa07c2487d5_rw_1920.jpg" alt="Robot Character" /></a>
+          <a target="_blank" href="/assets/port/e2dbe89e-435b-4dbb-a27f-32453aafe803_rw_1920.jpg"><img className='--half' src="/assets/port/e2dbe89e-435b-4dbb-a27f-32453aafe803_rw_1920.jpg" alt="Robot Character" /></a>
+        </div>
+      </LazyLoad>
+      <LazyLoad>
+        <a target="_blank" href="/assets/port/43r847812.png"><img className='--big' src="/assets/port/43r847812.png" alt="Robot Character" /></a>
+      </LazyLoad>
+      <LazyLoad>
+        <a target="_blank" href="/assets/port/eifrua.png"><img className='--big' src="/assets/port/eifrua.png" alt="Mario Academia" /></a>
+      </LazyLoad>
+      <LazyLoad>
+        <a target="_blank" href="/assets/port/few333.jpg"><img className='--big' src="/assets/port/few333.jpg" alt="Tyler, The Creator (SU)" /></a>
+      </LazyLoad>
+      <LazyLoad>
+        <a target="_blank" href="/assets/port/fewafewfae.jpg"><img className='--big' src="/assets/port/fewafewfae.jpg" alt="Blue Diamond (SU)" /></a>
+      </LazyLoad>
+      <h2 className='big-header' id="spots">Spots</h2>
+      <LazyLoad>
+        <div>
+          <a target="_blank" href="/assets/port/bc6df93c-c7fb-4de1-aec9-525500c328f8_rw_1920.jpg"><img className='--half' src="/assets/port/bc6df93c-c7fb-4de1-aec9-525500c328f8_rw_1920.jpg" alt="Book Worms" /></a>
+          <a target="_blank" href="/assets/port/Dv3Xru5W0AAuoIV.jpg"><img className='--half' src="/assets/port/Dv3Xru5W0AAuoIV.jpg" alt="Adventure Time" /></a>
+        </div>
+      </LazyLoad>
+      <LazyLoad>
+        <div>
+          <a target="_blank" href="/assets/port/ear3era.jpg"><img className='--half' src="/assets/port/gra4e94829.jpg" alt="Social Graffiti" /></a>
+          <a target="_blank" href="/assets/port/7298fhua7.jpg"><img className='--half' src="/assets/port/7298fhua7.jpg" alt="Pattern" /></a>
+        </div>
+      </LazyLoad>
+
+      <h2 className='big-header' id="animation">Animation</h2>
+      <LazyLoad>
+        <div className='mosaic'>
+          <a target="_blank" href="/assets/port/cdc5b757-7594-4787-83a6-4cf1ac508583_rw_1200.gif"><img className='--half' src="/assets/port/cdc5b757-7594-4787-83a6-4cf1ac508583_rw_1200.gif" alt="Mermaid" /></a>
+          <a target="_blank" href="/assets/port/a2281821-ccc3-40c8-9696-2004486c2a1b_rw_1920.gif"><img className='--half' src="/assets/port/a2281821-ccc3-40c8-9696-2004486c2a1b_rw_1920.gif" alt="Island" /></a>
+        </div>
+      </LazyLoad>
+      <LazyLoad>
+        <div className='mosaic'>
+          <a target="_blank" href="/assets/port/840aad96-9d55-4fb8-b9c0-50b98403da4e_rw_1200.gif"><img className='--half' src="/assets/port/840aad96-9d55-4fb8-b9c0-50b98403da4e_rw_1200.gif" alt="Waves" /></a>
+          <a target="_blank" href="/assets/port/85e29ad2-7947-4b24-96c3-db16a4dc496a_rw_1200.gif"><img className='--half' src="/assets/port/85e29ad2-7947-4b24-96c3-db16a4dc496a_rw_1200.gif" alt="Halloween" /></a>
+        </div>
+      </LazyLoad>
+    </section>
+  )
+
   const ProjectPage = (
     <section className='page --projects'>
       <a href="https://main.d3e5jo0eiyk3ey.amplifyapp.com/" target="_blank" rel="noreferrer" className="block">
@@ -243,6 +307,7 @@ function App() {
       <Routes>
         <Route path="/" element={HomePage} />
         <Route path="/projects" element={ProjectPage} />
+        <Route path="/portfolio" element={PortfolioPage} />
       </Routes>
     </main>
   );

@@ -295,6 +295,41 @@ ul {
   animation: fader .25s reverse forwards;
 }
 
+.page.--portfolio {
+  display: grid;
+  gap: 1rem;
+  margin: 0 auto;
+  max-width: 1280px;
+  margin-bottom: 2.5vh;
+}
+
+.mosaic{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mosaic > a > img{
+  width: 100%;
+}
+
+img.--big {
+  width: 100%;
+}
+
+img.--half{
+  width: 50%;
+}
+
+.big-header{
+  background: var(--accent-color-2);
+  box-sizing:border-box;
+  width: 100%;
+  padding: 1rem 1rem;
+}
+
 .page.--projects {
   margin: 0 var(--justify-small);
   height: calc(100vh - 6rem);
